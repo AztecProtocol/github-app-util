@@ -1,0 +1,12 @@
+{
+  "name": "github-app-util",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "github-app-util": "./bin/get-token.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "octokit": "^5.0.5"
+  }
+}
