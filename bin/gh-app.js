@@ -13,11 +13,19 @@ const commands = {
 const help = `Usage: gh-app <command> [options]
 
 Commands:
-  token          Generate an installation token
-  pull           Pull a repo using a fresh token
-  clone          Clone a repo using a fresh token
-  check-token    Show token validity and expiry
-  list-repos     List accessible repositories
+  token                                  Generate an installation token
+  pull <owner/repo> [branch]             Pull a repo using a fresh token
+  clone <owner/repo> [directory]         Clone a repo using a fresh token
+  check-token                            Show token validity and expiry
+  list-repos                             List accessible repositories
+
+Examples:
+  gh-app token
+  export GITHUB_TOKEN=$(gh-app token 2>/dev/null)
+  gh-app pull myorg/myrepo main
+  gh-app clone myorg/myrepo ./local-dir
+  gh-app check-token
+  gh-app list-repos
 
 Options:
   -h, --help     Show this help message
