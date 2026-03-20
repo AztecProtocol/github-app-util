@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "bin": {
-    "github-app-util": "./bin/get-token.js"
+    "gh-app": "./bin/gh-app.js"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

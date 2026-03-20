@@ -1,6 +1,6 @@
-# github-app-util
+# gh-app
 
-Generate GitHub App installation tokens for API access.
+A CLI for GitHub App authentication and git operations.
 
 ## Prerequisites
 
@@ -20,7 +20,7 @@ Or clone and install locally:
 ```bash
 git clone https://github.com/AztecProtocol/github-app-util.git
 cd github-app-util
-npm install
+npm install && npm link
 ```
 
 ## Setup
@@ -43,40 +43,53 @@ GITHUB_PRIVATE_KEY_PATH=./private-key.pem
 
 ## Usage
 
-If installed globally:
+```
+gh-app <command> [options]
+
+Commands:
+  token          Generate an installation token
+  pull           Pull a repo using a fresh token
+  clone          Clone a repo using a fresh token
+  check-token    Show token validity and expiry
+  list-repos     List accessible repositories
+```
+
+Run `gh-app <command> --help` for command-specific help.
+
+### Generate a token
 
 ```bash
-github-app-util
+gh-app token
 ```
 
-If cloned locally:
+To capture as an environment variable:
 
 ```bash
-node bin/get-token.js
+export GITHUB_TOKEN=$(gh-app token 2>/dev/null)
 ```
 
-The tool outputs an installation token you can use for API calls.
-
-To capture the token as an environment variable:
+### Pull a repo
 
 ```bash
-export GITHUB_TOKEN=$(github-app-util 2>/dev/null)
+gh-app pull owner/repo
+gh-app pull owner/repo feature-branch
 ```
 
-The `2>/dev/null` suppresses the TTY warning so only the token is captured.
-
-Then you can use the git api normally with the token:
+### Clone a repo
 
 ```bash
-  git pull https://<GITHUB_TOKEN>@github.com/OWNER/REPO.git main                    
+gh-app clone owner/repo
+gh-app clone owner/repo my-directory
 ```
 
-Or set it more persistently:                                                      
-```bash                                                                                    
-  # Set the remote URL with the token
-  git remote set-url origin https://<GITHUB_TOKEN>@github.com/OWNER/REPO.git        
-   
-  # Then pull normally                                                              
-  git pull
+### Check token validity
+
+```bash
+gh-app check-token
 ```
 
+### List accessible repos
+
+```bash
+gh-app list-repos
+```
