@@ -65,3 +65,18 @@ export GITHUB_TOKEN=$(github-app-util 2>/dev/null)
 
 The `2>/dev/null` suppresses the TTY warning so only the token is captured.
 
+Then you can use the git api normally with the token:
+
+```bash
+  git pull https://<GITHUB_TOKEN>@github.com/OWNER/REPO.git main                    
+```
+
+Or set it more persistently:                                                      
+```bash                                                                                    
+  # Set the remote URL with the token
+  git remote set-url origin https://<GITHUB_TOKEN>@github.com/OWNER/REPO.git        
+   
+  # Then pull normally                                                              
+  git pull
+```
+
